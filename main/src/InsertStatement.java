@@ -1,11 +1,9 @@
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertStatement{
+public class InsertStatement {
     private static final String INSERT_USERS_SQL = "INSERT INTO customers" +
             "  (name, bin, phone) VALUES " +
             " (?, ?, ?);";
