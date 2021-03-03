@@ -48,10 +48,11 @@ public class Client implements Person {
     }
 
     // Constructor
-    public Client(String name, String surname, String bin, String phone) {
+    public Client(String name, String surname, String bin, String password, String phone) {
         this.name = name;
         this.surname = surname;
         this.bin = bin;
+        this.password = password;
         this.phone = phone;
     }
 

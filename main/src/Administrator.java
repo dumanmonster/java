@@ -41,10 +41,6 @@ public class Administrator implements Person {
         this.password = password;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void orderTicket(int busId) {
 
     }
