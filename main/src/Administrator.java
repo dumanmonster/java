@@ -27,17 +27,10 @@ public class Administrator{
     // Need to add Login
 
     // Adds customer to Database
-    public void updateRoute() throws SQLException {
+    public void updateRoute(String startPoint, String endPoint, int busId) throws SQLException{
         SqlUpdate sqlUpdate = new SqlUpdate();
-        // sqlUpdate.updateRoute();
+        sqlUpdate.updateRoute(startPoint, endPoint, busId);
     }
-
-    /**
-    // Adds customer to Database
-    public void updatePayment() {
-        SqlUpdate sqlUpdate = new SqlUpdate();
-        sqlUpdate.updatePayment();
-    } */
 
     // Adds customer to Database
     public void updateBus(int busSpaces, int busId) throws SQLException{
