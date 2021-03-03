@@ -32,6 +32,14 @@ public class Administrator{
         sqlUpdate.updateRoute(startPoint, endPoint, busId);
     }
 
+
+    // Adds customer to Database
+    public void updatePayment(String startPoint, String endPoint, int busId) throws SQLException{
+        SqlUpdate sqlUpdate = new SqlUpdate();
+        sqlUpdate.updateRoute(startPoint, endPoint, busId);
+    }
+
+
     // Adds customer to Database
     public void updateBus(int busSpaces, int busId) throws SQLException{
         SqlUpdate sqlUpdate = new SqlUpdate();
