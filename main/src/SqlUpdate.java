@@ -20,6 +20,7 @@ public class SqlUpdate {
             e.printStackTrace();
         }
     }
+
     private static final String UPDATE_BUS_SQL = "UPDATE buses SET bus_space = ? WHERE bus_id = ?;";
 
     public void updateBus(int busSpaces, int busId) throws SQLException {

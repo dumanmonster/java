@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args) throws SQLException, PSQLException {
+    public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Validator v = new Validator();
         int input = 0;
@@ -69,21 +69,20 @@ public class Application {
 
                 System.out.print("\nEnter password: ");
                 String regPassword = scanner.next();
-                if(!v.checkPassword(regPassword)){
+                if (!v.checkPassword(regPassword)) {
                     System.out.print("\nStrong password");
-                }else{
+                } else {
                     System.out.print("\nTry again password don't match requirement");
                     break;
                 }
                 System.out.print("\nEnter password second time");
-                String regPassword2 =  scanner.next();
-                if(regPassword.equals(regPassword2)){
+                String regPassword2 = scanner.next();
+                if (regPassword.equals(regPassword2)) {
                     System.out.print("\nPasswords matched");
-                }else{
+                } else {
                     System.out.print("\nTry again passwords don't matched");
                     break;
                 }
-
 
                 System.out.print("\n*****\n" +
                         "Now please, input your personal data below:\n");

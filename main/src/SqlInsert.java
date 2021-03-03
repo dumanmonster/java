@@ -26,9 +26,9 @@ public class SqlInsert {
             e.printStackTrace();
         }
         System.out.println("User is added");
-
     }
-    public void  addPerson(String fName, String sName, String bin, String gender) throws SQLException{
+
+    public void addPerson(String fName, String sName, String bin, String gender) throws SQLException {
         try (Connection connection = DriverManager
                 .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
              //Create a statement using connection object
@@ -44,5 +44,4 @@ public class SqlInsert {
         }
         System.out.println("Person is added");
     }
-
 }

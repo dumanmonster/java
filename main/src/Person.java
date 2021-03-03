@@ -1,4 +1,4 @@
-public abstract class Person{
+public abstract class Person {
     protected String fName;
     protected String sName;
     protected String bin;

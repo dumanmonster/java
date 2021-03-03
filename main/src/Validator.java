@@ -1,27 +1,27 @@
 public class Validator {
-    private boolean checkLogin(String login, String password){
+    private boolean checkLogin(String login, String password) {
         //
-        //
-
         return false;
     }
-    private boolean checkUpper(String password){
-        for(int i = 0; i < password.length(); i++){
-            if(password.toUpperCase().equals(password)){
+
+    private boolean checkUpper(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (password.toUpperCase().equals(password)) {
                 return false;
             }
-
         }
         return true;
 
     }
-    private boolean checkS(String password){
-        char [] passar = password.toCharArray();
-        for(int i = 0; i < password.length(); i++){
+
+    private boolean checkS(String password) {
+        char[] passar = password.toCharArray();
+        for (int i = 0; i < password.length(); i++) {
             return passar[i] == '@' || passar[i] == '$' || passar[i] == '!' || passar[i] == '^';
         }
         return false;
     }
+
     private boolean checkDigit(String password) {
         char[] passchar = password.toCharArray();
         for (int i = 0; i < password.length(); i = i + 1) {
@@ -29,6 +29,7 @@ public class Validator {
         }
         return false;
     }
+
     public boolean checkPassword(String password) {
         return checkUpper(password) && checkDigit(password) && checkS(password) && password.length() >= 8;
     }
