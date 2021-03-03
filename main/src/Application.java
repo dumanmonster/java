@@ -1,11 +1,14 @@
+import org.postgresql.util.PSQLException;
+
 import java.lang.ref.Cleaner;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, PSQLException {
         Scanner scanner = new Scanner(System.in);
-
+        Validator v = new Validator();
         int input = 0;
         System.out.print("\n*****\n" +
                 "Welcome to Bus Ticket Reservation System!\n" +
@@ -16,7 +19,9 @@ public class Application {
         try {
             input = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Invalid input.");
+            //Invalid input try again pls
+
+            e.getMessage();
         }
 
         switch (input) {
@@ -24,52 +29,78 @@ public class Application {
                 System.out.print("\n*****\n" +
                         "Please, choose the type of access to the system:\n" +
                         "1- Client\n" +
-                        "2- Administrator");
+                        "2- Administrator\n");
 
                 int access = scanner.nextInt();
 
                 switch (access) {
                     case 1: // If it's an user
                         System.out.print("\nLogin: ");
-                        String clientLogin = scanner.nextLine();
+                        String clientLogin = scanner.next();
 
-                        // Check if we have such bin in database and if yes continue
+                        // Check if we have such login in database and if yes continue
 
                         System.out.print("\nPassword: ");
-                        String clientPassword = scanner.nextLine();
+                        String clientPassword = scanner.next();
 
                         // Finds info about client and continues code
                         break;
                     case 2: // If it's an admin
                         System.out.print("\nUsername: ");
-                        String adminUsername = scanner.nextLine();
+                        String adminUsername = scanner.next();
 
                         System.out.print("\nPassword: ");
-                        String adminPassword = scanner.nextLine();
+                        String adminPassword = scanner.next();
 
                         // Finds info about admin and continues code
                         break;
                 }
                 break;
+
             // End of the first case
             case 2: // Register
+                System.out.println("WELCOME TO REGISTRATION");
+                User u = new User();
+                System.out.print("\n Enter preferred login: ");
+                String regLogin = scanner.next();
+                //if login already exist , return "user with such login already exist else.."
+                System.out.print("\nEmail: ");
+                String regEmail = scanner.next();
+
+                System.out.print("\nEnter password: ");
+                String regPassword = scanner.next();
+                if(!v.checkPassword(regPassword)){
+                    System.out.print("\nStrong password");
+                }else{
+                    System.out.print("\nTry again password don't match requirement");
+                    break;
+                }
+                System.out.print("\nEnter password second time");
+                String regPassword2 =  scanner.next();
+                if(regPassword.equals(regPassword2)){
+                    System.out.print("\nPasswords matched");
+                }else{
+                    System.out.print("\nTry again passwords don't matched");
+                    break;
+                }
+
+
                 System.out.print("\n*****\n" +
-                        "Please, input your personal data below:");
+                        "Now please, input your personal data below:\n");
 
                 System.out.print("\nFirst name: ");
-                String regName = scanner.nextLine();
+                String regName = scanner.next();
 
                 System.out.print("\nSecond name: ");
-                String regSurname = scanner.nextLine();
+                String regSurname = scanner.next();
 
                 System.out.print("\nBIN: ");
-                String regBin = scanner.nextLine();
+                String regBin = scanner.next();
 
-                System.out.print("\nPassword: ");
-                String regPassword = scanner.nextLine();
+                System.out.print("\nSex: ");
+                String regSex = scanner.next();
 
-                System.out.print("\nPhone: ");
-                String regPhone = scanner.nextLine();
+                u.registrationNewUser(regLogin, regPassword, regEmail, regName, regSurname, regBin, regSex);
                 break;
             // End of the second case
         }

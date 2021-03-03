@@ -1,7 +1,7 @@
 public class Validator {
     private boolean checkLogin(String login, String password){
         //
-
+        //
 
         return false;
     }

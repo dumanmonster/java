@@ -14,7 +14,7 @@ public class SqlInsert {
     public void addUser(String login, String email, String password) throws SQLException {
         //Establishing a Connection
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/BusTicketBooking", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, login);
@@ -30,7 +30,7 @@ public class SqlInsert {
     }
     public void  addPerson(String fName, String sName, String bin, String gender) throws SQLException{
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/BusTicketBooking", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERSON_SQL)) {
             preparedStatement.setString(1, fName);
