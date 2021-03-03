@@ -32,12 +32,12 @@ public class Administrator{
         // sqlUpdate.updateRoute();
     }
 
-    /**
+
     // Adds customer to Database
-    public void updatePayment() {
+    public void updatePayment(String startPoint, String endPoint, int busId) throws SQLException{
         SqlUpdate sqlUpdate = new SqlUpdate();
-        sqlUpdate.updatePayment();
-    } */
+        sqlUpdate.updateRoute(startPoint, endPoint, busId);
+    }
 
     // Adds customer to Database
     public void updateBus(int busSpaces, int busId) throws SQLException{
