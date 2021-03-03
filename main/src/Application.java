@@ -1,4 +1,5 @@
 import java.lang.ref.Cleaner;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Application {
@@ -6,28 +7,32 @@ public class Application {
         Client c = new Client("sdf", "df", "df", "dfd", "dfdf");
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n*****\n" +
+        int input = 0;
+        System.out.print("\n*****\n" +
                 "Welcome to Bus Ticket Reservation System!\n" +
-                "Please log in in the system or register to continue:\n" +
                 "1- Log in\n" +
-                "2- Register now\n");
+                "2- Register now\n" +
+                "Please enter the id of operation you want to complete: ");
 
-        int input = scanner.nextInt();
+        try {
+            input = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input.");
+        }
 
         switch (input) {
             case 1: // Log in
-                System.out.println("\n*****\n" +
+                System.out.print("\n*****\n" +
                         "Please, choose the type of access to the system:\n" +
                         "1- Client\n" +
-                        "2- Administrator\n");
+                        "2- Administrator");
 
                 int access = scanner.nextInt();
 
                 switch (access) {
                     case 1: // If it's an user
-                        System.out.print("\n*****\n" +
-                                "BIN: ");
-                        String clientBin = scanner.nextLine();
+                        System.out.print("\nLogin: ");
+                        String clientLogin = scanner.nextLine();
 
                         // Check if we have such bin in database and if yes continue
 
@@ -37,18 +42,17 @@ public class Application {
                         // Finds info about client and continues code
                         break;
                     case 2: // If it's an admin
-                        System.out.print("\n*****\n" +
-                                "Username: ");
+                        System.out.print("\nUsername: ");
                         String adminUsername = scanner.nextLine();
 
-                        System.out.print("Password: ");
+                        System.out.print("\nPassword: ");
                         String adminPassword = scanner.nextLine();
 
                         // Finds info about admin and continues code
                         break;
                 }
                 break;
-                // End of the first case
+            // End of the first case
             case 2: // Register
                 System.out.print("\n*****\n" +
                         "Please, input your personal data below:");
@@ -68,7 +72,7 @@ public class Application {
                 System.out.print("\nPhone: ");
                 String regPhone = scanner.nextLine();
                 break;
-                // End of the second case
+            // End of the second case
         }
     }
 }

@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+
 public class Administrator implements Person {
     private String name;
     private String surname;
@@ -49,19 +51,27 @@ public class Administrator implements Person {
         //
     }
 
-    public void printTicket(int ticketId) {}
+    public void printTicket(int ticketId) {
+    }
 
     // Need to add Login
 
-    public void updateRoute() {
-        //
+    // Adds customer to Database
+    public void updateRoute() throws SQLException {
+        SqlUpdate sqlUpdate = new SqlUpdate();
+        sqlUpdate.updateRoute();
     }
 
+    /**
+    // Adds customer to Database
     public void updatePayment() {
-        //
-    }
+        SqlUpdate sqlUpdate = new SqlUpdate();
+        sqlUpdate.updatePayment();
+    } */
 
-    public void updateBus() {
-        //
+    // Adds customer to Database
+    public void updateBus(int busSpaces, int busId) throws SQLException{
+        SqlUpdate sqlUpdate = new SqlUpdate();
+        sqlUpdate.updateBus(busSpaces, busId);
     }
 }

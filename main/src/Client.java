@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Client implements Person {
     private String name;
@@ -58,8 +55,8 @@ public class Client implements Person {
 
     // Adds customer to Database
     public void newPassenger() throws SQLException {
-        InsertStatement insertStatement = new InsertStatement();
-        insertStatement.insertRecord(this.name, this.bin, this.phone);
+        SqlInsert sqlInsert = new SqlInsert();
+        sqlInsert.insertRecord(this.name, this.bin, this.phone);
     }
 
     public void orderTicket(int busId) {
@@ -87,6 +84,7 @@ public class Client implements Person {
     // Deletes the user from database
     public void deleteCustomer(int bin) {
         // SQL
+
     }
 
 
