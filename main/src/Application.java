@@ -1,4 +1,4 @@
-import org.postgresql.util.PSQLException;
+/** import org.postgresql.util.PSQLException; */
 
 import java.lang.ref.Cleaner;
 import java.sql.SQLException;
@@ -12,23 +12,40 @@ public class Application {
         int input = 0;
         System.out.print("\n*****\n" +
                 "Welcome to Bus Ticket Reservation System!\n" +
-                "1- Log in\n" +
-                "2- Register now\n" +
+                "1. Check the routes table\n" +
+                "2. Buy the ticket\n" +
+                "3. Return the ticket\n" +
+                "4. Print existing ticket\n" +
+                "5. Log in\n" +
+                "6. Register now\n" +
                 "Please enter the id of operation you want to complete: ");
 
         try {
             input = scanner.nextInt();
         } catch (InputMismatchException e) {
             //Invalid input try again pls
-
-            e.getMessage();
+            e.printStackTrace();
         }
 
         switch (input) {
-            case 1: // Log in
+            case 1: // Check the routes table
+                SqlSelect sqlS = new SqlSelect();
+                sqlS.findBusesFULL();
+                break;
+
+            case 2: // Buy the ticket
+                System.out.print("\n*****\n" +
+                        "Please, enter Bus ID: ");
+                String userBusId = scanner.next();
+
+
+
+                break;
+
+            case 5: // Log in
                 System.out.print("\n*****\n" +
                         "Please, choose the type of access to the system:\n" +
-                        "1- Client\n" +
+                        "1- User\n" +
                         "2- Administrator\n");
 
                 int access = scanner.nextInt();
@@ -57,9 +74,9 @@ public class Application {
                 }
                 break;
 
-            // End of the first case
-            case 2: // Register
-                System.out.println("WELCOME TO REGISTRATION");
+            // End of the case
+            case 6: // Register
+                System.out.println("WELCOME TO SYSTEM REGISTRATION");
                 User u = new User();
                 System.out.print("\n Enter preferred login: ");
                 String regLogin = scanner.next();
@@ -101,7 +118,7 @@ public class Application {
 
                 u.registrationNewUser(regLogin, regPassword, regEmail, regName, regSurname, regBin, regSex);
                 break;
-            // End of the second case
+            // End of the case
         }
     }
 }

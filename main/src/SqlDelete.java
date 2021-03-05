@@ -8,7 +8,7 @@ public class SqlDelete {
 
     public void deleteRecord(int binId) throws SQLException {
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USERS_SQL)) {
             preparedStatement.setInt(1, binId);

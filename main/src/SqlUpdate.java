@@ -8,7 +8,7 @@ public class SqlUpdate {
 
     public void updateRoute(String startPoint, String endPoint, int busId) throws SQLException {
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROUTE_SQL)) {
             preparedStatement.setString(1, startPoint);
@@ -25,7 +25,7 @@ public class SqlUpdate {
 
     public void updateBus(int busSpaces, int busId) throws SQLException {
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_BUS_SQL)) {
             preparedStatement.setInt(1, --busSpaces);
