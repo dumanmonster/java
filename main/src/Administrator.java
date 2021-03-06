@@ -38,8 +38,8 @@ public class Administrator{
     }
 
     // Adds customer to Database
-    public void updateBus(int busSpaces, int busId) throws SQLException{
+    public void updateBus(int busId) throws SQLException{
         SqlUpdate sqlUpdate = new SqlUpdate();
-        sqlUpdate.updateBus(busSpaces, busId);
+        sqlUpdate.updateBusSpace(busId);
     }
 }

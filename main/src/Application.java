@@ -1,7 +1,5 @@
-/** import org.postgresql.util.PSQLException; */
-
-import java.lang.ref.Cleaner;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,15 +7,15 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Validator v = new Validator();
+        ArrayList<Ticket> tickets = new ArrayList<>(); // Stores tickets
         int input = 0;
         System.out.print("\n*****\n" +
                 "Welcome to Bus Ticket Reservation System!\n" +
                 "1. Check the routes table\n" +
                 "2. Buy the ticket\n" +
                 "3. Return the ticket\n" +
-                "4. Print existing ticket\n" +
-                "5. Log in\n" +
-                "6. Register now\n" +
+                "4. Log in\n" +
+                "5. Register now\n" +
                 "Please enter the id of operation you want to complete: ");
 
         try {
@@ -29,20 +27,43 @@ public class Application {
 
         switch (input) {
             case 1: // Check the routes table
-                SqlSelect sqlS = new SqlSelect();
-                sqlS.findBusesFULL();
+                SqlSelect sel = new SqlSelect();
+                sel.findBusesFULL();
                 break;
 
             case 2: // Buy the ticket
+                // Вывод всех рейсов
+
+                // Choosing bus with proper route
                 System.out.print("\n*****\n" +
                         "Please, enter Bus ID: ");
-                String userBusId = scanner.next();
+                int userBusId = scanner.nextInt();
 
+                System.out.print("Your first name: ");
+                String userFName = scanner.next();
 
+                System.out.print("Your second name: ");
+                String userSName = scanner.next();
 
+                System.out.print("Your BIN: ");
+                int userBin = scanner.nextInt();
+
+                SqlUpdate upd = new SqlUpdate();
+                SqlInsert ins = new SqlInsert();
+
+                upd.updateBusSpace(userBusId); // --bus_space
+
+                // Creating new ticket
+                Ticket t = new Ticket(userBusId, userFName, userSName, userBin);
+                tickets.add(t);
+
+                t.printTicket(userBusId); // Prints out ticket
                 break;
 
-            case 5: // Log in
+            case 3: // Return the ticket
+                break;
+
+            case 4: // Log in
                 System.out.print("\n*****\n" +
                         "Please, choose the type of access to the system:\n" +
                         "1- User\n" +
@@ -75,7 +96,7 @@ public class Application {
                 break;
 
             // End of the case
-            case 6: // Register
+            case 5: // Register
                 System.out.println("WELCOME TO SYSTEM REGISTRATION");
                 User u = new User();
                 System.out.print("\n Enter preferred login: ");

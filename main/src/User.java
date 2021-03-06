@@ -6,10 +6,11 @@ public class User extends Person {
     private String pass;
 
     public void login(String login, String pass) {
-        System.out.println("You have successfully logged as " + login);
+        System.out.println("You have successfully logged as " + login + "!");
     }
 
-    public void registrationNewUser(String login, String pass, String email, String fName, String sName, String bin, String gender) throws SQLException {
+    public void registrationNewUser(String login, String pass, String email, String fName,
+                                    String sName, String bin, String gender) throws SQLException {
         SqlInsert is = new SqlInsert();
         this.login = login;
         this.email = email;
@@ -18,7 +19,7 @@ public class User extends Person {
         super.setsName(sName);
         super.setBin(bin);
         super.setGender(gender);
-        //adding to DB
+        //adding to database
         is.addUser(login, email, pass);
         is.addPerson(fName, sName, bin, gender);
     }
