@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) throws Exception {
-        Bus b = new Bus();
+        /*Bus b = new Bus();
         Scanner scanner = new Scanner(System.in);
 
         SimpleDateFormat DATE = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,8 +36,8 @@ public class Application {
             date1 = DATE.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
-        }
-
+        }*/
+        Scanner scanner = new Scanner(System.in);
 
         Validator v = new Validator();
         ArrayList<Ticket> tickets = new ArrayList<>(); // Stores tickets

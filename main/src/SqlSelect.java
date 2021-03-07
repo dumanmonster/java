@@ -1,13 +1,10 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class SqlSelect {
     private static final String SELECT_ALL_BUS_SQL = "SELECT * FROM buses";
     private String url = "jdbc:postgresql://localhost:5432/Bus Ticket Reservation System";
     private String user = "postgres";
-    private String password = "passwordforedb_0210";
+    private String password = "dukabest";
 
 
     // Outputs all info about BUSES from database
@@ -18,7 +15,18 @@ public class SqlSelect {
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BUS_SQL)) {
             //Execute the query
-            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            int i = 1;
+            while (rs.next()){
+                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.println(i+"| busId: " + rs.getInt(1) +
+                        " | FROM: " + rs.getString(2) + " | TO: " + rs.getString(3) + " | DEPART DATE: " +
+                        rs.getDate(4) + " | TIME: " + rs.getTime(5) + " | ARRIVE DATE: " +
+                        rs.getDate(6) + " | TIME: " + rs.getTime(7) + " | AVAILABLE SPACE: " + rs.getInt(9) + " |");
+                i++;
+            }
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -40,7 +48,11 @@ public class SqlSelect {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROUTE_FROM)) {
             preparedStatement.setInt(1, busId);
             //Execute the query
-            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            int i =1;
+            while (rs.next()){
+                System.out.println(i + ". ");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
