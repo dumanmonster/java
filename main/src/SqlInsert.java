@@ -22,7 +22,7 @@ public class SqlInsert {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("User is added");
+        System.out.println("New user successfully created!!!");
     }
 
     private static final String INSERT_PERSON_SQL = "INSERT INTO persons(fname, sname, bin, gender)" +
@@ -43,6 +43,5 @@ public class SqlInsert {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Person is added");
     }
 }

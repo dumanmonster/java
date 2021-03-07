@@ -3,48 +3,54 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 
 public class Bus {
-    private int busId;
-    private String startPoint;
-    private String endPoint;
-    private SimpleDateFormat date;
-    private SimpleDateFormat time;
-    private static final String SHOWING_TIMETABLE_SQL = "SELECT busId, date, time FROM buses WHERE startPoint = ? and endPoint = ?";
-    public Bus(){
-    }
-    public void showAll() throws SQLException {
-        try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
-            Statement stmt = connection.createStatement();) {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM buses");
-            int i = 1;
-            while (rs.next()){
-                System.out.println("__________________________________________");
-                System.out.println(i + ". BUSID: " + rs.getInt(1) + "|FROM " + rs.getString(2) + " TO " + rs.getString(3) + "|DATE: " + rs.getDate(4) + " TIME: " + rs.getTime(5) + "|");
-                i++;
-
-            }
-        }catch (SQLException e){
-                e.printStackTrace();
-        }
-
-    }
-    public void showTime(String startPoint, String endPoint) throws SQLException {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
+    private String url = "jdbc:postgresql://localhost:5432/Bus Ticket Reservation System";
+    private String user = "postgres";
+    private String password = "dukabest";
+    public static final String CHECK_SPACE_SQL = "SELECT available FROM buses WHERE busid = ?";
+    public boolean checkAvailable(int busId){
+        try (Connection connection = DriverManager
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
              //Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SHOWING_TIMETABLE_SQL)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(CHECK_SPACE_SQL)) {
+            preparedStatement.setInt(1, busId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                return rs.getBoolean(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    private static final String UPDATE_ROUTE_SQL = "UPDATE buses SET routefrom = ?, routeto = ? WHERE busId = ?;";
+
+    // To update bus routes
+    public void updateRoute(String startPoint, String endPoint, int busId) throws SQLException {
+        try (Connection connection = DriverManager
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
+             //Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROUTE_SQL)) {
             preparedStatement.setString(1, startPoint);
             preparedStatement.setString(2, endPoint);
-            ResultSet rs = preparedStatement.executeQuery();
-            int i = 1;
-            while (rs.next()){
-                System.out.println("__________________________________________");
-                System.out.println(i + ". BusNo: " + rs.getInt(1) + " | DATE: " + rs.getDate(2) + "| TIME: " + rs.getTime(3));
-                i++;
-            }
-            System.out.println("__________________________________________");
+            preparedStatement.setInt(3, busId);
             //Execute the query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private static final String UPDATE_BUS_SQL = "UPDATE buses SET bus_space = bus_space - 1 WHERE bus_id = ?;";
 
-
+    // To update bus spaces
+    public void updateBusSpace(int busId) throws SQLException {
+        try (Connection connection = DriverManager
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
+             //Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_BUS_SQL)) {
+            preparedStatement.setInt(1, busId);
+            //Execute the query
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
