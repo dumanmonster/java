@@ -6,9 +6,10 @@ import java.sql.SQLException;
 public class SqlUpdate {
     private static final String UPDATE_ROUTE_SQL = "UPDATE buses SET routefrom = ?, routeto = ? WHERE busId = ?;";
 
+    // To update bus routes
     public void updateRoute(String startPoint, String endPoint, int busId) throws SQLException {
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROUTE_SQL)) {
             preparedStatement.setString(1, startPoint);
@@ -21,15 +22,15 @@ public class SqlUpdate {
         }
     }
 
-    private static final String UPDATE_BUS_SQL = "UPDATE buses SET bus_space = ? WHERE bus_id = ?;";
+    private static final String UPDATE_BUS_SQL = "UPDATE buses SET bus_space = bus_space - 1 WHERE bus_id = ?;";
 
-    public void updateBus(int busSpaces, int busId) throws SQLException {
+    // To update bus spaces
+    public void updateBusSpace(int busId) throws SQLException {
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "dukabest");
+                .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
              //Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_BUS_SQL)) {
-            preparedStatement.setInt(1, --busSpaces);
-            preparedStatement.setInt(2, busId);
+            preparedStatement.setInt(1, busId);
             //Execute the query
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

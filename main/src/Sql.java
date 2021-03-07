@@ -8,7 +8,7 @@ public class Sql {
      public void logger(String login, String password) throws SQLException {
      //Establishing a Connection
      try (Connection connection = DriverManager
-     .getConnection("jdbc:postgresql://localhost:5432/BusTicketBooking", "postgres", "dukabest");
+     .getConnection("jdbc:postgresql://localhost:5432/BusTicketBooking", "postgres", "passwordforedb_0210");
      //Create a statement using connection object
      PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
      preparedStatement.setString(1, login);
