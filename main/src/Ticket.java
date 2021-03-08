@@ -15,10 +15,10 @@ public class Ticket extends User {
     private int busId;
     private String fName;
     private String sName;
-    private int bin = 0;
+    private String bin;
 
     // Constructor
-    public Ticket(int busId, String fName, String sName, int bin) {
+    public Ticket(int busId, String fName, String sName, String bin) {
         this.busId = busId;
         this.fName = fName;
         this.sName = sName;
@@ -128,13 +128,13 @@ public class Ticket extends User {
 
     public void printTicket(int busId) {
 
-        System.out.print("\n*****\n" +
-                "BUS TICKET" +
-                "Bus ID: " + busId +
-                "\n*****\n" +
+        System.out.print("*****************************************\n" +
+                "BUS TICKET " +
+                "\nBus ID: " + busId +
+                "\n*****************************************\n" +
                 "Name: " + fName +
                 "\nSurname: " + sName +
-                "\nBIN: " + bin + "\n*****\n" +
+                "\nBIN: " + bin + "\n*****************************************\n" +
                 "From: ");
         try {
             findForTicketRouteFrom(busId);
@@ -150,7 +150,7 @@ public class Ticket extends User {
             e.printStackTrace();
         }
 
-        System.out.print("\n*****\nDepart Date: ");
+        System.out.print("\n*****************************************\nDepart Date: ");
 
         try {
             findForTicketDepartDate(busId);

@@ -10,8 +10,23 @@ public class User extends Person {
     private String login;
     private String email;
     private String pass;
-    private static final String DELETE_USERS_SQL = "DELETE from client where bin = ?;";
-
+    private static final String DELETE_USERS_SQL = "DELETE from users where bin = ?;";
+    private static final String GUIBB = "SELECT ? from persons where bin = ?";
+    public String getUserInformationByBin(String bin, String WHAT){
+        try (Connection connection = DriverManager
+                .getConnection(url, user, password);
+             //Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(GUIBB)) {
+            //Execute the query
+            preparedStatement.setString(1, WHAT);
+            preparedStatement.setString(2, bin);
+            ResultSet rs = preparedStatement.executeQuery();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
     public void deleteRecord(int binId) throws SQLException {
         try (Connection connection = DriverManager
                 .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");

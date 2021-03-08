@@ -36,19 +36,24 @@ public class Application {
                 String password = scanner.next();
                 u.login(login, password);
 
-                System.out.println("Now you have 3 options to do: " +
+                System.out.println("Now you have 2 options to do: " +
                         "\n1. Check all available buses: " +
-                        "\n2. Buy a ticket" +
-                        "\n3. Return ticket");
+                        "\n2. Buy a ticket");
                 int input2 = scanner.nextInt();
                 switch (input2) {
                     case 1:
                         u.findBusesFULL();
                     case 2:
-                        //buy ticket
-                    case 3:
-                        //return ticket
-
+                        System.out.println("Enter bus ID which one you prefer to buy: ");
+                        int userBusId = scanner.nextInt();
+                        SqlUpdate upd = new SqlUpdate();
+                        upd.updateBusSpace(userBusId); // --bus_space
+                        System.out.println("Now please enter your bin one more time: ");
+                        String userBin = scanner.next();
+                        Ticket ticket = new Ticket(userBusId, u.getUserInformationByBin(userBin, "fname"), u.getUserInformationByBin(userBin, "sname"), userBin);
+                        tickets.add(ticket);
+                        ticket.printTicket(userBusId);
+                        break;
 
                 }
             case 2:
@@ -59,6 +64,7 @@ public class Application {
                     regLogin = scanner.next();
                     if(u.checkLoginExistences(regLogin)){
                         System.out.println("Unique login good job!!!");
+                        break;
                     }else{
                         System.out.println("User with such login already exist!!!");
                     }
@@ -100,7 +106,7 @@ public class Application {
                 String regSex = scanner.next();
 
                 u.registrationNewUser(regLogin, regPassword, regEmail, regName, regSurname, regBin, regSex);
-
+                break;
 
         }
 
