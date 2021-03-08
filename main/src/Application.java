@@ -1,9 +1,3 @@
-import java.sql.SQLException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import java.util.ArrayList;
 
 import java.util.InputMismatchException;
@@ -15,18 +9,21 @@ public class Application {
         ArrayList<Ticket> tickets = new ArrayList<>();
         Validator v = new Validator();
         int input = 0;
+
         System.out.print("\n*****\n" +
                 "\nWelcome to Bus Ticket Reservation System! by Duman and Jasmine" +
                 "\nYou have 2 option to do:" +
                 "\n1. Login" +
                 "\n2. Register" +
                 "\nPlease enter the id of operation you want to complete: ");
+
         try {
             input = scanner.nextInt();
         } catch (InputMismatchException e) {
             //Invalid input try again pls
             e.printStackTrace();
         }
+
         User u = new User();
         switch (input) {
             case 1:
@@ -36,12 +33,12 @@ public class Application {
                 String password = scanner.next();
                 u.login(login, password);
 
-
                 System.out.print("\nNow you have 2 options to do: " +
 
                         "\n1. Check all available buses: " +
                         "\n2. Buy a ticket");
                 int input2 = scanner.nextInt();
+
                 switch (input2) {
                     case 1:
                         u.findBusesFULL();
@@ -52,22 +49,23 @@ public class Application {
                         upd.updateBusSpace(userBusId); // --bus_space
                         System.out.println("Now please enter your bin one more time: ");
                         String userBin = scanner.next();
-                        Ticket ticket = new Ticket(userBusId, u.getUserInformationByBin(userBin, "fname"), u.getUserInformationByBin(userBin, "sname"), userBin);
+                        Ticket ticket = new Ticket(userBusId, u.getUserInformationByBin(userBin, "fname"),
+                                u.getUserInformationByBin(userBin, "sname"), userBin);
                         tickets.add(ticket);
                         ticket.printTicket(userBusId);
                         break;
-
                 }
+
             case 2:
                 System.out.print("WELCOME TO SYSTEM REGISTRATION");
                 System.out.print("\n Enter preferred login: ");
                 String regLogin = "";
-                while (u.checkLoginExistences(regLogin)){
+                while (u.checkLoginExistences(regLogin)) {
                     regLogin = scanner.next();
-                    if(u.checkLoginExistences(regLogin)){
+                    if (u.checkLoginExistences(regLogin)) {
                         System.out.println("Unique login good job!!!");
                         break;
-                    }else{
+                    } else {
                         System.out.println("User with such login already exist!!!");
                     }
                 }
@@ -77,14 +75,17 @@ public class Application {
 
                 System.out.print("\nEnter password: ");
                 String regPassword = scanner.next();
+
                 if (!v.checkPassword(regPassword)) {
                     System.out.print("\nStrong password");
                 } else {
                     System.out.print("\nTry again password don't match requirement");
                     break;
                 }
+
                 System.out.print("\nEnter password second time");
                 String regPassword2 = scanner.next();
+
                 if (regPassword.equals(regPassword2)) {
                     System.out.print("\nPasswords matched");
                 } else {
@@ -111,23 +112,5 @@ public class Application {
                 break;
 
         }
-
-
-            /*case 2: // Buy the ticket
-                int userBin = scanner.nextInt();
-
-                SqlUpdate upd = new SqlUpdate();
-                SqlInsert ins = new SqlInsert();
-
-                upd.updateBusSpace(userBusId); // --bus_space
-
-                // Creating new ticket
-                Ticket t = new Ticket(userBusId, userFName, userSName, userBin);
-                tickets.add(t);
-
-                t.printTicket(userBusId); // Prints out ticket
-                break*/
-
-        }
-
+    }
 }

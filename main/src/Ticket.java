@@ -10,7 +10,7 @@ public class Ticket extends User {
 
     private String url = "jdbc:postgresql://localhost:5432/Bus Ticket Reservation System";
     private String user = "postgres";
-    private String password = "dukabest";
+    private String password = "passwordforedb_0210";
     private int ticketId;
     private int busId;
     private String fName;
@@ -25,6 +25,7 @@ public class Ticket extends User {
         this.bin = bin;
         ticketId += 1;
     }
+
     public void findForTicketRouteFrom(int busId) throws SQLException {
         //Establishing a Connection
         try (Connection connection = DriverManager
@@ -34,13 +35,14 @@ public class Ticket extends User {
             preparedStatement.setInt(1, busId);
             //Execute the query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.println("FROM: " + rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public void findForTicketRouteTo(int busId) throws SQLException {
         //Establishing a Connection
         try (Connection connection = DriverManager
@@ -50,7 +52,7 @@ public class Ticket extends User {
             preparedStatement.setInt(1, busId);
             //Execute the query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.println("TO: " + rs.getString(1));
             }
         } catch (SQLException e) {
@@ -67,7 +69,7 @@ public class Ticket extends User {
             preparedStatement.setInt(1, busId);
             //Execute the query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.println("DEPART DATE: " + rs.getDate(1));
             }
         } catch (SQLException e) {
@@ -84,7 +86,7 @@ public class Ticket extends User {
             preparedStatement.setInt(1, busId);
             //Execute the query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.println("DEPART TIME: " + rs.getTime(1));
             }
         } catch (SQLException e) {
@@ -101,7 +103,7 @@ public class Ticket extends User {
             preparedStatement.setInt(1, busId);
             //Execute the query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.println("ARRIVE DATE: " + rs.getDate(1));
             }
         } catch (SQLException e) {
@@ -118,7 +120,7 @@ public class Ticket extends User {
             preparedStatement.setInt(1, busId);
             //Execute the query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.println("ARRIVE TIME: " + rs.getTime(1));
             }
         } catch (SQLException e) {
