@@ -36,11 +36,9 @@ public class Application {
                 String password = scanner.next();
                 u.login(login, password);
 
-<<<<<<< HEAD
-                System.out.println("Now you have 2 options to do: " +
-=======
-                System.out.print("\nNow you have 3 options to do: " +
->>>>>>> 47467e5b4ab2cbad1b5ab77287ec9467233449b6
+
+                System.out.print("\nNow you have 2 options to do: " +
+
                         "\n1. Check all available buses: " +
                         "\n2. Buy a ticket");
                 int input2 = scanner.nextInt();
