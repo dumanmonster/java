@@ -11,6 +11,7 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/Desktop/postgresql-42.2.19.jar!/" />
+          <root url="jar://$USER_HOME$/PostgreSQL JDBC/postgresql-42.2.19.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
