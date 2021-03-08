@@ -30,13 +30,13 @@ public class Application {
         User u = new User();
         switch (input) {
             case 1:
-                System.out.println("Please, enter your login: ");
+                System.out.print("\nPlease, enter your login: ");
                 String login = scanner.next();
-                System.out.println("Please, enter your password: ");
+                System.out.print("\nPlease, enter your password: ");
                 String password = scanner.next();
                 u.login(login, password);
 
-                System.out.println("Now you have 3 options to do: " +
+                System.out.print("\nNow you have 3 options to do: " +
                         "\n1. Check all available buses: " +
                         "\n2. Buy a ticket" +
                         "\n3. Return ticket");
@@ -52,7 +52,7 @@ public class Application {
 
                 }
             case 2:
-                System.out.println("WELCOME TO SYSTEM REGISTRATION");
+                System.out.print("WELCOME TO SYSTEM REGISTRATION");
                 System.out.print("\n Enter preferred login: ");
                 String regLogin = "";
                 while (u.checkLoginExistences(regLogin)){
