@@ -136,15 +136,14 @@ public class Ticket extends User {
                 "\n*****************************************\n" +
                 "Name: " + fName +
                 "\nSurname: " + sName +
-                "\nBIN: " + bin + "\n*****************************************\n" +
-                "From: ");
+                "\nBIN: " + bin + "\n*****************************************\n");
         try {
             findForTicketRouteFrom(busId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        System.out.print("\nTo: ");
+        System.out.print("\n");
 
         try {
             findForTicketRouteTo(busId);
@@ -152,31 +151,24 @@ public class Ticket extends User {
             e.printStackTrace();
         }
 
-        System.out.print("\n*****************************************\nDepart Date: ");
+        System.out.print("\n*****************************************\n");
 
         try {
             findForTicketDepartDate(busId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        System.out.print("Depart Time: ");
-
         try {
             findForTicketDepartTime(busId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        System.out.print("Arrive Date: ");
-
         try {
             findForTicketArriveDate(busId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        System.out.print("Arrive Time: ");
 
         try {
             findForTicketArriveTime(busId);

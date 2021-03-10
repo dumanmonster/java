@@ -35,7 +35,7 @@ public class Application {
 
                 System.out.print("\nNow you have 2 options to do: " +
 
-                        "\n1. Check all available buses: " +
+                        "\n1. Check all available buses" +
                         "\n2. Buy a ticket");
                 int input2 = scanner.nextInt();
 
