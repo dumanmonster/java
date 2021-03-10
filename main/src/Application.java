@@ -55,6 +55,7 @@ public class Application {
                         ticket.printTicket(userBusId);
                         break;
                 }
+                break;
 
             case 2: // Register
                 System.out.print("WELCOME TO SYSTEM REGISTRATION");
