@@ -6,7 +6,7 @@ public class Bus {
     private String url = "jdbc:postgresql://localhost:5432/Bus Ticket Reservation System";
     private String user = "postgres";
     private String password = "passwordforedb_0210";
-    public static final String CHECK_SPACE_SQL = "SELECT available FROM buses WHERE busid = ?";
+    public static final String CHECK_SPACE_SQL = "SELECT available FROM buses WHERE bus_id = ?";
     public boolean checkAvailable(int busId){
         try (Connection connection = DriverManager
                 .getConnection("jdbc:postgresql://localhost:5432/Bus Ticket Reservation System", "postgres", "passwordforedb_0210");
@@ -22,7 +22,7 @@ public class Bus {
         }
         return true;
     }
-    private static final String UPDATE_ROUTE_SQL = "UPDATE buses SET routefrom = ?, routeto = ? WHERE busId = ?;";
+    private static final String UPDATE_ROUTE_SQL = "UPDATE buses SET route_from = ?, route_to = ? WHERE bus_id = ?;";
 
     // To update bus routes
     public void updateRoute(String startPoint, String endPoint, int busId) throws SQLException {
