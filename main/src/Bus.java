@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 public class Bus {
     private String url = "jdbc:postgresql://localhost:5432/Bus Ticket Reservation System";
     private String user = "postgres";
-    private String password = "dukabest";
+    private String password = "passwordforedb_0210";
     public static final String CHECK_SPACE_SQL = "SELECT available FROM buses WHERE busid = ?";
     public boolean checkAvailable(int busId){
         try (Connection connection = DriverManager

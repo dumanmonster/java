@@ -26,7 +26,7 @@ public class Application {
 
         User u = new User();
         switch (input) {
-            case 1:
+            case 1: // Log in
                 System.out.print("\nPlease, enter your login: ");
                 String login = scanner.next();
                 System.out.print("\nPlease, enter your password: ");
@@ -56,12 +56,12 @@ public class Application {
                         break;
                 }
 
-            case 2:
+            case 2: // Register
                 System.out.print("WELCOME TO SYSTEM REGISTRATION");
                 System.out.print("\n Enter preferred login: ");
                 String regLogin = "";
+                regLogin = scanner.next();
                 while (u.checkLoginExistences(regLogin)) {
-                    regLogin = scanner.next();
                     if (u.checkLoginExistences(regLogin)) {
                         System.out.println("Unique login good job!!!");
                         break;
